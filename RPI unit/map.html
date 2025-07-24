@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Firefighter Map</title>
+  <meta charset="utf-8">
+  <style>
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script>
+    let map, marker1, marker2;
+    let dangerCircle1 = null;
+    let dangerCircle2 = null;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 16,
+        center: { lat: -37.8436, lng: 145.1121 }, //default center
+      });
+
+       // Red marker for Unit 1
+      marker1 = new google.maps.Marker({
+        map,
+        icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+      });
+
+       // Red marker for Unit 2
+      marker2 = new google.maps.Marker({
+        map,
+        icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+      });
+
+       // Initial update + periodic refresh
+      updateMarkers();
+      setInterval(updateMarkers, 5000);
+    }
+
+    // Fetch data from location.json and update map markers and danger zones
+    function updateMarkers() {
+      fetch("/location.json")
+        .then(response => response.json())
+        .then(data => {
+          if (data.unit1) {
+            const pos1 = { lat: parseFloat(data.unit1.lat), lng: parseFloat(data.unit1.lon) };
+            marker1.setPosition(pos1);
+            // Info popup for Unit 1
+            const info1 = new google.maps.InfoWindow({
+              content: `
+                <b>Firefighter Unit 1</b><br>
+                Temp: ${data.unit1.temp}°C<br>
+                Flame: ${data.unit1.flame ? 'No' : 'Yes'}
+              `
+            });
+
+            marker1.addListener("mouseover", () => info1.open(map, marker1));
+            marker1.addListener("mouseout", () => info1.close());
+            // Show red danger circle if flagged
+            if (data.unit1.danger) {
+              if (dangerCircle1) dangerCircle1.setMap(null);
+              dangerCircle1 = new google.maps.Circle({
+                strokeColor: "#FF0000",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#FF0000",
+                fillOpacity: 0.35,
+                map: map,
+                center: pos1,
+                radius: 60
+              });
+            } else if (dangerCircle1) {
+              dangerCircle1.setMap(null);
+              dangerCircle1 = null;
+            }
+          }
+
+          if (data.unit2) {
+            const pos2 = { lat: parseFloat(data.unit2.lat), lng: parseFloat(data.unit2.lon) };
+            marker2.setPosition(pos2);
+             // Info popup for Unit 2
+            const info2 = new google.maps.InfoWindow({
+              content: `
+                <b>Firefighter Unit 2</b><br>
+                Temp: ${data.unit2.temp}°C<br>
+                Flame: ${data.unit2.flame ? 'No' : 'Yes'}
+              `
+            });
+
+            marker2.addListener("mouseover", () => info2.open(map, marker2));
+            marker2.addListener("mouseout", () => info2.close());
+            // Show red danger circle if flagged
+            if (data.unit2.danger) {
+              if (dangerCircle2) dangerCircle2.setMap(null);
+              dangerCircle2 = new google.maps.Circle({
+                strokeColor: "#FF0000",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#FF0000",
+                fillOpacity: 0.35,
+                map: map,
+                center: pos2,
+                radius: 60
+              });
+            } else if (dangerCircle2) {
+              dangerCircle2.setMap(null);
+              dangerCircle2 = null;
+            }
+          }
+        })
+        .catch(error => {
+          console.error("Error reading location.json:", error);
+        });
+    }
+  </script>
+
+  <!-- Load Google Maps API -->
+<!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
+   <script async
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+   </script>
+</body>
+</html>
