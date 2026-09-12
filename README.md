@@ -1,6 +1,6 @@
 # Firefighter Communication and Management System
 
-An asynchronous embedded IoT and telemetry platform engineered to monitor first-responder safety in hazardous environments[cite: 1]. The system captures real-time environmental and positional metrics from wearable hardware nodes and transmits them across long-range, interference-resilient wireless channels to a centralized monitoring station[cite: 1].
+An asynchronous embedded IoT and telemetry platform engineered to monitor first-responder safety in hazardous environments. The system captures real-time environmental and positional metrics from wearable hardware nodes and transmits them across long-range, interference-resilient wireless channels to a centralized monitoring station.
 
 ---
 
@@ -28,27 +28,27 @@ An asynchronous embedded IoT and telemetry platform engineered to monitor first-
 
 The system is separated into two operational layers:
 
-1. **Field Sensor Nodes (`arduino units`):** Low-power Arduino microcontrollers interfacing with environmental and spatial sensors, handling edge validation and payload serialization[cite: 1].
-2. **Central Monitoring Unit (`RPI unit`):** A Raspberry Pi receiver station executing Python background workers to parse incoming packet buffers, check threshold boundaries, and render telemetry updates on an operations interface[cite: 1].
+1. **Field Sensor Nodes (`arduino units`):** Low-power Arduino microcontrollers interfacing with environmental and spatial sensors, handling edge validation and payload serialization.
+2. **Central Monitoring Unit (`RPI unit`):** A Raspberry Pi receiver station executing Python background workers to parse incoming packet buffers, check threshold boundaries, and render telemetry updates on an operations interface.
 
 ---
 
 ## Key Features
 
-* **Environmental Telemetry:** Continuous sampling of ambient temperature, humidity levels, and active flame presence[cite: 1].
-* **Positional Tracking:** GPS coordinate tracking to maintain situational awareness of field personnel[cite: 1].
-* **Resilient LoRa Transmission:** Long-Range (LoRa) radio communication featuring custom retry algorithms and packet acknowledgment structures to minimize dropped telemetry under extreme structural interference[cite: 1].
-* **Control Room Interface:** Real-time Python GUI visualizing unit health and mapping telemetry directly onto interactive geospatial map coordinates with automated safety perimeter alerts[cite: 1].
+* **Environmental Telemetry:** Continuous sampling of ambient temperature, humidity levels, and active flame presence.
+* **Positional Tracking:** GPS coordinate tracking to maintain situational awareness of field personnel.
+* **Resilient LoRa Transmission:** Long-Range (LoRa) radio communication featuring custom retry algorithms and packet acknowledgment structures to minimize dropped telemetry under extreme structural interference.
+* **Control Room Interface:** Real-time Python GUI visualizing unit health and mapping telemetry directly onto interactive geospatial map coordinates with automated safety perimeter alerts.
 
 ---
 
 ## Tech Stack & Hardware Components
 
-* **Languages:** C++, C, Python[cite: 1]
-* **Embedded Hardware:** Arduino Microcontrollers, Raspberry Pi[cite: 1]
-* **Radio & Networking:** LoRa Transceiver Modules, Serial/UART Interfaces, Custom Packet Protocols[cite: 1]
-* **Sensors:** Flame Detection Module, Temperature/Humidity Sensor, GPS Positioning Module[cite: 1]
-* **Software Tools:** Google Maps API, Tkinter/PyQt, Python Serial, PlatformIO / Arduino IDE[cite: 1]
+* **Languages:** C++, C, Python
+* **Embedded Hardware:** Arduino Microcontrollers, Raspberry Pi
+* **Radio & Networking:** LoRa Transceiver Modules, Serial/UART Interfaces, Custom Packet Protocols
+* **Sensors:** Flame Detection Module, Temperature/Humidity Sensor, GPS Positioning Module
+* **Software Tools:** Google Maps API, Tkinter/PyQt, Python Serial, PlatformIO / Arduino IDE
 
 ---
 
@@ -117,4 +117,5 @@ Connect the sensors to the Arduino via GPIO and Analog pins:
 
 ## Author
 
-* **Sithum Pramuditha** – [GitHub Profile](https://github.com/Sithumpramu) · [LinkedIn](https://www.linkedin.com/in/sithum-pramuditha/)[cite: 1]
+* **Sithum Pramuditha** – [GitHub Profile](https://github.com/Sithumpramu) · [LinkedIn](https://www.linkedin.com/in/sithum-pramuditha/)
+```
