@@ -118,4 +118,3 @@ Connect the sensors to the Arduino via GPIO and Analog pins:
 ## Author
 
 * **Sithum Pramuditha** – [GitHub Profile](https://github.com/Sithumpramu) · [LinkedIn](https://www.linkedin.com/in/sithum-pramuditha/)
-```
